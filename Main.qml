@@ -1,227 +1,175 @@
-import QtQuick 6.0
-import QtQuick.Controls 6.0
+import QtQuick 2.15
 import SddmComponents 2.0
 
 Rectangle {
-    id: root
     width: 1920
     height: 1080
     color: "#1a1a1a"
 
     property int sessionIndex: session.index
 
-    // Background
     Rectangle {
-        anchors.fill: parent
-        color: "#1a1a1a"
-    }
-
-    // Main container
-    Rectangle {
-        id: mainContainer
+        id: loginBox
         anchors.centerIn: parent
         width: 400
         height: 300
         color: "#2a2a2a"
         radius: 8
-        border.color: "#3a3a3a"
-        border.width: 1
 
         Column {
             anchors.centerIn: parent
             spacing: 20
 
-            // Title
             Text {
                 text: "Login"
                 color: "#ffffff"
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 24
-                font.weight: Font.Bold
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
-            // Username field
-            TextField {
-                id: usernameField
+            Rectangle {
                 width: 300
                 height: 40
-                placeholderText: "Username"
-                placeholderTextColor: "#888888"
-                color: "#ffffff"
-                font.family: "JetBrainsMono Nerd Font"
-                font.pixelSize: 14
-                background: Rectangle {
-                    color: "#3a3a3a"
-                    border.color: "#555555"
-                    border.width: 1
-                    radius: 4
-                }
-                selectByMouse: true
-                focus: true
-                
-                Keys.onPressed: function(event) {
-                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                        passwordField.focus = true
-                    }
-                }
-            }
+                color: "#3a3a3a"
+                radius: 4
 
-            // Password field
-            TextField {
-                id: passwordField
-                width: 300
-                height: 40
-                placeholderText: "Password"
-                placeholderTextColor: "#888888"
-                color: "#ffffff"
-                font.family: "JetBrainsMono Nerd Font"
-                font.pixelSize: 14
-                echoMode: TextInput.Password
-                background: Rectangle {
-                    color: "#3a3a3a"
-                    border.color: "#555555"
-                    border.width: 1
-                    radius: 4
-                }
-                selectByMouse: true
-                
-                Keys.onPressed: function(event) {
-                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                        loginButton.clicked()
-                    }
-                }
-            }
-
-            // Login button
-            Button {
-                id: loginButton
-                width: 300
-                height: 40
-                text: "Login"
-                
-                background: Rectangle {
-                    color: loginButton.pressed ? "#4a4a4a" : "#5a5a5a"
-                    border.color: "#6a6a6a"
-                    border.width: 1
-                    radius: 4
-                }
-                
-                contentItem: Text {
-                    text: loginButton.text
+                TextInput {
+                    id: name
+                    anchors.fill: parent
+                    anchors.leftMargin: 10
+                    anchors.rightMargin: 10
+                    verticalAlignment: TextInput.AlignVCenter
                     color: "#ffffff"
                     font.family: "JetBrainsMono Nerd Font"
                     font.pixelSize: 14
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
+                    selectByMouse: true
+                    focus: true
+
+                    Keys.onPressed: {
+                        if (event.key === Qt.Key_Return) {
+                            password.focus = true
+                        }
+                    }
                 }
-                
-                onClicked: function() {
-                    sddm.login(usernameField.text, passwordField.text, sessionIndex)
+
+                Text {
+                    text: "Username"
+                    color: "#888888"
+                    font.family: "JetBrainsMono Nerd Font"
+                    font.pixelSize: 14
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    visible: name.text.length === 0
+                }
+            }
+
+            Rectangle {
+                width: 300
+                height: 40
+                color: "#3a3a3a"
+                radius: 4
+
+                TextInput {
+                    id: password
+                    anchors.fill: parent
+                    anchors.leftMargin: 10
+                    anchors.rightMargin: 10
+                    verticalAlignment: TextInput.AlignVCenter
+                    color: "#ffffff"
+                    font.family: "JetBrainsMono Nerd Font"
+                    font.pixelSize: 14
+                    echoMode: TextInput.Password
+                    selectByMouse: true
+
+                    Keys.onPressed: {
+                        if (event.key === Qt.Key_Return) {
+                            sddm.login(name.text, password.text, sessionIndex)
+                        }
+                    }
+                }
+
+                Text {
+                    text: "Password"
+                    color: "#888888"
+                    font.family: "JetBrainsMono Nerd Font"
+                    font.pixelSize: 14
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    visible: password.text.length === 0
+                }
+            }
+
+            Rectangle {
+                width: 300
+                height: 40
+                color: loginMouseArea.pressed ? "#4a4a4a" : "#5a5a5a"
+                radius: 4
+
+                Text {
+                    text: "Login"
+                    color: "#ffffff"
+                    font.family: "JetBrainsMono Nerd Font"
+                    font.pixelSize: 14
+                    anchors.centerIn: parent
+                }
+
+                MouseArea {
+                    id: loginMouseArea
+                    anchors.fill: parent
+                    onClicked: {
+                        sddm.login(name.text, password.text, sessionIndex)
+                    }
                 }
             }
         }
     }
 
-    // Session selector (bottom right)
-    ComboBox {
-        id: sessionComboBox
+    // Power button
+    Rectangle {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.margins: 20
-        width: 200
+        width: 40
         height: 30
-        
-        model: sessionModel
-        currentIndex: sessionModel.lastIndex
-        textRole: "name"
-        
-        background: Rectangle {
-            color: "#2a2a2a"
-            border.color: "#3a3a3a"
-            border.width: 1
-            radius: 4
-        }
-        
-        contentItem: Text {
-            text: sessionComboBox.displayText
+        color: powerMouseArea.pressed ? "#4a4a4a" : "#2a2a2a"
+        radius: 4
+
+        Text {
+            text: "⏻"
             color: "#ffffff"
             font.family: "JetBrainsMono Nerd Font"
-            font.pixelSize: 12
-            verticalAlignment: Text.AlignVCenter
-            leftPadding: 8
+            font.pixelSize: 14
+            anchors.centerIn: parent
         }
-        
-        onCurrentIndexChanged: {
-            sessionIndex = currentIndex
+
+        MouseArea {
+            id: powerMouseArea
+            anchors.fill: parent
+            onClicked: {
+                sddm.powerOff()
+            }
         }
     }
 
-    // Power buttons (bottom left)
-    Row {
+    // Session info
+    Text {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.margins: 20
-        spacing: 10
-
-        Button {
-            width: 40
-            height: 30
-            text: "⏻"
-            
-            background: Rectangle {
-                color: parent.pressed ? "#4a4a4a" : "#2a2a2a"
-                border.color: "#3a3a3a"
-                border.width: 1
-                radius: 4
-            }
-            
-            contentItem: Text {
-                text: parent.text
-                color: "#ffffff"
-                font.family: "JetBrainsMono Nerd Font"
-                font.pixelSize: 14
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-            
-            onClicked: function() { sddm.powerOff() }
-        }
-
-        Button {
-            width: 40
-            height: 30
-            text: "↻"
-            
-            background: Rectangle {
-                color: parent.pressed ? "#4a4a4a" : "#2a2a2a"
-                border.color: "#3a3a3a"
-                border.width: 1
-                radius: 4
-            }
-            
-            contentItem: Text {
-                text: parent.text
-                color: "#ffffff"
-                font.family: "JetBrainsMono Nerd Font"
-                font.pixelSize: 14
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-            
-            onClicked: function() { sddm.reboot() }
-        }
+        text: session.name
+        color: "#888888"
+        font.family: "JetBrainsMono Nerd Font"
+        font.pixelSize: 12
     }
 
-    // Connect to SDDM
     Connections {
         target: sddm
-        function onLoginSucceeded() {
-            // Login successful
-        }
-        function onLoginFailed() {
-            passwordField.clear()
-            passwordField.focus = true
+        onLoginFailed: {
+            password.text = ""
+            password.focus = true
         }
     }
 }
