@@ -1,15 +1,13 @@
 [SddmGreeterTheme]
-Name=Hacker theme
-Description=Hacker theme for SDDM
-Author=User
-Copyright=Public Domain
-License=CC0
+Name=hacker-theme
+Description=hacker-theme
+Author=Qaddoumi
+Website=https://github.com/Qaddoumi/hacker-theme
+License=MIT
 Type=sddm-theme
 Version=1.0
-Website=
-MainScript=Main.qml
 ConfigFile=theme.conf
-TranslationsDirectory=
-Theme-Id=sddm-hacker-theme
+MainScript=Main.qml
+Theme-Id=hacker-theme
 Theme-API=2.0
 QtVersion=6
