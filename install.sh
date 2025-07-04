@@ -14,11 +14,11 @@ sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd qt6-declarative qt6-
 
 # Clone repository
 echo -e "${yellow}Cloning repository...${no_color}"
-if [ -d "sddmHackTheme" ]; then
-    rm -rf sddmHackTheme
+if [ -d "sddm-hacker-theme" ]; then
+    rm -rf sddm-hacker-theme
 fi
-git clone https://github.com/Qaddoumi/sddmHackTheme.git
-cd sddmHackTheme
+git clone https://github.com/Qaddoumi/sddm-hacker-theme.git
+cd sddm-hacker-theme
 
 sudo rm -rf /usr/share/sddm/themes/hacker-theme || true
 
@@ -40,12 +40,12 @@ fi
 
 # Clean up
 cd ..
-rm -rf sddmHackTheme
+rm -rf sddm-hacker-theme
 
 # Set proper permissions
-echo -e "${yellow}Setting permissions...${no_color}"
-sudo chown -R root:root /usr/share/sddm/themes/hacker-theme
-sudo chmod -R 755 /usr/share/sddm/themes/hacker-theme
+# echo -e "${yellow}Setting permissions...${no_color}"
+# sudo chown -R root:root /usr/share/sddm/themes/hacker-theme
+# sudo chmod -R 755 /usr/share/sddm/themes/hacker-theme
 
 # Configure SDDM
 echo -e "${yellow}Configuring SDDM...${no_color}"
@@ -63,8 +63,6 @@ if [ ! -f "/etc/sddm.conf" ]; then
 [Theme]
 Current=hacker-theme
 
-[General]
-DisplayServer=wayland
 EOF
 else
     # Update existing config
