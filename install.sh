@@ -34,28 +34,28 @@ sudo chmod 644 /usr/share/sddm/themes/sddm-hacker-theme/metadata.desktop
 
 echo -e "${yellow}Configuring SDDM...${no_color}"
 # Create or update SDDM config
-if [ ! -f "/etc/sddm.conf" ]; then
-    # Create new config file
-    sudo tee /etc/sddm.conf > /dev/null << 'EOF'
-[Theme]
-Current=sddm-hacker-theme
+# if [ ! -f "/etc/sddm.conf" ]; then
+#     # Create new config file
+#     sudo tee /etc/sddm.conf > /dev/null << 'EOF'
+# [Theme]
+# Current=sddm-hacker-theme
 
-[General]
-DisplayServer=wayland
-EOF
-else
-    # Update existing config
-    # Remove old theme setting if it exists
-    sudo sed -i '/^Current=/d' /etc/sddm.conf
+# [General]
+# DisplayServer=wayland
+# EOF
+# else
+#     # Update existing config
+#     # Remove old theme setting if it exists
+#     sudo sed -i '/^Current=/d' /etc/sddm.conf
     
-    # Add [Theme] section if it doesn't exist
-    if ! grep -q "^\[Theme\]" /etc/sddm.conf; then
-        echo -e "\n[Theme]" | sudo tee -a /etc/sddm.conf > /dev/null
-    fi
+#     # Add [Theme] section if it doesn't exist
+#     if ! grep -q "^\[Theme\]" /etc/sddm.conf; then
+#         echo -e "\n[Theme]" | sudo tee -a /etc/sddm.conf > /dev/null
+#     fi
     
-    # Add theme setting after [Theme] section
-    sudo sed -i '/^\[Theme\]/a Current=sddm-hacker-theme' /etc/sddm.conf
-fi
+#     # Add theme setting after [Theme] section
+#     sudo sed -i '/^\[Theme\]/a Current=sddm-hacker-theme' /etc/sddm.conf
+# fi
 
 sudo mkdir -p /etc/sddm.conf.d
 sudo touch /etc/sddm.conf.d/virtualkbd.conf || true
