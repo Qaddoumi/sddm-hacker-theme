@@ -1,0 +1,17 @@
+phonon-qt5 4.12.0-4
+phonon-qt5-gstreamer 4.10.0-4
+qt5-base 5.15.17+kde+r123-1
+qt5-declarative 5.15.17+kde+r21-1
+qt5-graphicaleffects 5.15.17-1
+qt5-multimedia 5.15.17+kde+r2-1
+qt5-quickcontrols2 5.15.17+kde+r5-1
+qt5-translations 5.15.17-1
+qt5-x11extras 5.15.17-1
+qt6-base 6.9.1-2
+qt6-declarative 6.9.1-1
+qt6-multimedia 6.9.1-1
+qt6-multimedia-ffmpeg 6.9.1-1
+qt6-svg 6.9.1-1
+qt6-translations 6.9.1-1
+qt6-virtualkeyboard 6.9.1-1
+qt6-wayland 6.9.1-1
