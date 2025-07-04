@@ -1,3 +1,5 @@
+> **⚠️ This theme is currently not working. I am actively working on fixing it.**
+
 # sddm-hacker-theme
 sddm-hacker-theme
 
