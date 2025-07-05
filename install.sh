@@ -8,7 +8,7 @@ no_color='\033[0m' # No Color
 
 echo -e "${green}Installing SDDM Hacker Theme...${no_color}"
 
-echo -e "${yellow}Installing dependencies...${no_color}"
+echo -e "${green}Installing dependencies...${no_color}"
 sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd qt6-declarative qt6-multimedia qt6-wayland qt5-quickcontrols2
 
 echo -e "${green}Cloning repository...${no_color}"
@@ -37,11 +37,6 @@ fi
 echo -e "${green}Cleaning up${no_color}"
 cd ..
 sudo rm -rf sddm-hacker-theme || true
-
-# Set proper permissions
-# echo -e "${green}Setting permissions...${no_color}"
-# sudo chown -R root:root /usr/share/sddm/themes/hacker-theme
-# sudo chmod -R 755 /usr/share/sddm/themes/hacker-theme
 
 echo -e "${green}Configuring SDDM...${no_color}"
 
