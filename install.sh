@@ -13,7 +13,7 @@ echo -e "${yellow}Installing dependencies...${no_color}"
 sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd qt6-declarative qt6-multimedia qt6-wayland
 
 # Clone repository
-echo -e "${yellow}Cloning repository...${no_color}"
+echo -e "${green}Cloning repository...${no_color}"
 if [ -d "sddm-hacker-theme" ]; then
     rm -rf sddm-hacker-theme
 fi
@@ -23,18 +23,18 @@ cd sddm-hacker-theme
 sudo rm -rf /usr/share/sddm/themes/hacker-theme || true
 
 # Create theme directory
-echo -e "${yellow}Creating theme directory...${no_color}"
+echo -e "${green}Creating theme directory...${no_color}"
 sudo mkdir -p /usr/share/sddm/themes/hacker-theme
 
 # Copy all theme files (including theme.conf)
-echo -e "${yellow}Copying theme files...${no_color}"
+echo -e "${green}Copying theme files...${no_color}"
 sudo cp Main.qml matrix.js theme.conf /usr/share/sddm/themes/hacker-theme/
 
 # Copy assets directory if it exists
 if [ -d "assets" ]; then
     sudo cp -r assets /usr/share/sddm/themes/hacker-theme/
 else
-    echo -e "${yellow}Creating assets directory...${no_color}"
+    echo -e "${green}Creating assets directory...${no_color}"
     sudo mkdir -p /usr/share/sddm/themes/hacker-theme/assets
 fi
 
@@ -47,8 +47,7 @@ rm -rf sddm-hacker-theme
 # sudo chown -R root:root /usr/share/sddm/themes/hacker-theme
 # sudo chmod -R 755 /usr/share/sddm/themes/hacker-theme
 
-# Configure SDDM
-echo -e "${yellow}Configuring SDDM...${no_color}"
+echo -e "${green}Configuring SDDM...${no_color}"
 
 if [ -f "/etc/sddm.conf" ]; then
     echo -e "${green}Backing up the config file and removing it${no_color}"
@@ -57,7 +56,7 @@ if [ -f "/etc/sddm.conf" ]; then
     echo -e "${green}Backed up existing SDDM config to /etc/sddm.conf.backup${no_color}"
 fi
 
-echo -e "{green}creating a new config file ${no_color}"
+echo -e "${green}creating a new config file ${no_color}"
 sudo tee /etc/sddm.conf > /dev/null << 'EOF'
 [Theme]
 Current=hacker-theme
@@ -68,6 +67,6 @@ GreeterEnvironment=QT_LOGGING_RULES="qt5ct.debug=false"
 EOF
 
 echo -e "${green}Installation complete!${no_color}"
-echo -e "${yellow}Next steps:${no_color}"
+echo -e "${green}Next steps:${no_color}"
 echo ". Restart SDDM: sudo systemctl restart sddm (or reboot)"
 echo ". Check logs if there are issues: journalctl -u sddm -f"
