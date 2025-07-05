@@ -8,11 +8,9 @@ no_color='\033[0m' # No Color
 
 echo -e "${green}Installing SDDM Hacker Theme...${no_color}"
 
-# Install dependencies
 echo -e "${yellow}Installing dependencies...${no_color}"
 sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd qt6-declarative qt6-multimedia qt6-wayland
 
-# Clone repository
 echo -e "${green}Cloning repository...${no_color}"
 if [ -d "sddm-hacker-theme" ]; then
     rm -rf sddm-hacker-theme
@@ -22,11 +20,9 @@ cd sddm-hacker-theme
 
 sudo rm -rf /usr/share/sddm/themes/hacker-theme || true
 
-# Create theme directory
 echo -e "${green}Creating theme directory...${no_color}"
 sudo mkdir -p /usr/share/sddm/themes/hacker-theme
 
-# Copy all theme files (including theme.conf)
 echo -e "${green}Copying theme files...${no_color}"
 sudo cp Main.qml matrix.js theme.conf /usr/share/sddm/themes/hacker-theme/
 
@@ -38,12 +34,12 @@ else
     sudo mkdir -p /usr/share/sddm/themes/hacker-theme/assets
 fi
 
-# Clean up
+echo -e "${green}Cleaning up${no_color}"
 cd ..
-rm -rf sddm-hacker-theme
+sudo rm -rf sddm-hacker-theme || true
 
 # Set proper permissions
-# echo -e "${yellow}Setting permissions...${no_color}"
+# echo -e "${green}Setting permissions...${no_color}"
 # sudo chown -R root:root /usr/share/sddm/themes/hacker-theme
 # sudo chmod -R 755 /usr/share/sddm/themes/hacker-theme
 
