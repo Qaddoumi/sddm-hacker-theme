@@ -56,27 +56,15 @@ if [ -f "/etc/sddm.conf" ]; then
     echo -e "${green}Backed up existing SDDM config to /etc/sddm.conf.backup${no_color}"
 fi
 
-# Create or update SDDM config
-if [ ! -f "/etc/sddm.conf" ]; then
-    # Create new config file
-    sudo tee /etc/sddm.conf > /dev/null << 'EOF'
+sudo rm -rf /etc/sddm.conf || true
+sudo tee /etc/sddm.conf > /dev/null << 'EOF'
 [Theme]
 Current=hacker-theme
-
+[General]
+DisplayServer=wayland
+Greeter=qt6
+GreeterEnvironment=QT_LOGGING_RULES="qt5ct.debug=false"
 EOF
-else
-    # Update existing config
-    # Remove old theme setting if it exists
-    sudo sed -i '/^Current=/d' /etc/sddm.conf
-    
-    # Add [Theme] section if it doesn't exist
-    if ! grep -q "^\[Theme\]" /etc/sddm.conf; then
-        echo -e "\n[Theme]" | sudo tee -a /etc/sddm.conf > /dev/null
-    fi
-    
-    # Add theme setting after [Theme] section
-    sudo sed -i '/^\[Theme\]/a Current=hacker-theme' /etc/sddm.conf
-fi
 
 echo -e "${green}Installation complete!${no_color}"
 echo -e "${yellow}Next steps:${no_color}"
