@@ -52,11 +52,13 @@ echo -e "${yellow}Configuring SDDM...${no_color}"
 
 # Backup existing config if it exists
 if [ -f "/etc/sddm.conf" ]; then
+    echo -e "${green}Backing up the config file and removing it${no_color}"
     sudo cp /etc/sddm.conf /etc/sddm.conf.backup
+    sudo rm -f /etc/sddm.conf || true
     echo -e "${green}Backed up existing SDDM config to /etc/sddm.conf.backup${no_color}"
 fi
 
-sudo rm -rf /etc/sddm.conf || true
+echo -e "{green}creating a new config file ${no_color}"
 sudo tee /etc/sddm.conf > /dev/null << 'EOF'
 [Theme]
 Current=hacker-theme
