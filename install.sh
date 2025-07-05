@@ -9,7 +9,7 @@ no_color='\033[0m' # No Color
 echo -e "${green}Installing SDDM Hacker Theme...${no_color}"
 
 echo -e "${yellow}Installing dependencies...${no_color}"
-sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd qt6-declarative qt6-multimedia qt6-wayland
+sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd qt6-declarative qt6-multimedia qt6-wayland qt5-quickcontrols2
 
 echo -e "${green}Cloning repository...${no_color}"
 if [ -d "sddm-hacker-theme" ]; then
