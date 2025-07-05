@@ -3,19 +3,9 @@
 This is a hacker-style SDDM theme with a dark background, neon green text, and a matrix digital rain effect.
 
 
-### Installation Instructions :
-
-**Preview the Theme**:
-
-- Run the following command to test the theme without logging out:
+## Installation Instructions :
 
 ```bash
-sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/hacker-theme
-```
-
-**Install**:
-
-  ```bash
 bash <(curl -sL https://raw.githubusercontent.com/Qaddoumi/sddm-hacker-theme/main/install.sh)
 ```
 
