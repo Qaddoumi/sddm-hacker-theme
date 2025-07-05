@@ -50,7 +50,6 @@ rm -rf sddm-hacker-theme
 # Configure SDDM
 echo -e "${yellow}Configuring SDDM...${no_color}"
 
-# Backup existing config if it exists
 if [ -f "/etc/sddm.conf" ]; then
     echo -e "${green}Backing up the config file and removing it${no_color}"
     sudo cp /etc/sddm.conf /etc/sddm.conf.backup
