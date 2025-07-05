@@ -1,4 +1,3 @@
-> **⚠️ This theme is currently not working. I am actively working on fixing it.**
 
 # SDDM Hacker Theme
 This is a hacker-style SDDM theme with a dark background, neon green text, and a matrix digital rain effect.
