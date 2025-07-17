@@ -6,6 +6,8 @@ green='\033[0;32m'
 yellow='\033[1;33m'
 no_color='\033[0m' # No Color
 
+cd ~ || echo -e "${red}Failed to change directory to home${no_color}" && exit 1
+
 echo -e "${green}Installing SDDM Hacker Theme...${no_color}"
 
 echo -e "${green}Installing dependencies...${no_color}"
@@ -15,7 +17,7 @@ echo -e "${green}Cloning repository...${no_color}"
 if [ -d "sddm-hacker-theme" ]; then
     sudo rm -rf sddm-hacker-theme
 fi
-sudo git clone --depth 1 https://github.com/Qaddoumi/sddm-hacker-theme.git
+git clone --depth 1 https://github.com/Qaddoumi/sddm-hacker-theme.git ~/sddm-hacker-theme
 cd sddm-hacker-theme
 
 sudo rm -rf /usr/share/sddm/themes/hacker-theme || true
