@@ -6,7 +6,7 @@ green='\033[0;32m'
 yellow='\033[1;33m'
 no_color='\033[0m' # No Color
 
-cd ~ || echo -e "${red}Failed to change directory to home${no_color}" && exit 1
+cd ~ || echo -e "${red}Failed to change directory to home${no_color}"
 
 echo -e "${green}Installing SDDM Hacker Theme...${no_color}"
 
