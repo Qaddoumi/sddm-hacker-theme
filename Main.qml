@@ -45,7 +45,7 @@ Rectangle {
         spacing: 20
 
         Text {
-            text: "HACKER LOGIN"
+            text: "WELCOME TO THE DUNGEON"
             font.family: "JetBrainsMono Nerd Font Propo"
             font.pixelSize: 36
             color: "#00ff00"
