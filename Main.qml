@@ -66,6 +66,7 @@ Rectangle {
                 border.width: 1
                 radius: 5
             }
+            Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: 300
             KeyNavigation.tab: passwordField
             Keys.onPressed: (event) => {
@@ -88,6 +89,7 @@ Rectangle {
                 border.width: 1
                 radius: 5
             }
+            Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: 300
             KeyNavigation.tab: loginButton
             Keys.onPressed: (event) => {
