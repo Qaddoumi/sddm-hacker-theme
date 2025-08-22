@@ -4,11 +4,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import "matrix.js" as Matrix
 
-property int sessionIndex: sessionSelector.currentIndex
-property alias userName: usernameField.text
-property alias password: passwordField.text
-property bool singleUser: userModel.count === 1
-
 Rectangle {
     id: root
     width: Screen.width
@@ -19,6 +14,7 @@ Rectangle {
     property int sessionIndex: sessionSelector.currentIndex
     property alias userName: usernameField.text
     property alias password: passwordField.text
+    property bool singleUser: userModel.count === 1
 
     // Background image
     Image {
@@ -76,10 +72,10 @@ Rectangle {
             Layout.preferredWidth: 300
             KeyNavigation.tab: passwordField
             Keys.onPressed: (event) => {
-                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                    passwordField.forceActiveFocus()
-                }
-            }
+                                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                                    passwordField.forceActiveFocus()
+                                }
+                            }
         }
 
         TextField {
@@ -99,10 +95,10 @@ Rectangle {
             Layout.preferredWidth: 300
             KeyNavigation.tab: loginButton
             Keys.onPressed: (event) => {
-                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                    loginButton.clicked()
-                }
-            }
+                                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                                    loginButton.clicked()
+                                }
+                            }
         }
 
         Button {
