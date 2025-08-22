@@ -1,12 +1,13 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
 import "matrix.js" as Matrix
 
 Rectangle {
     id: root
-    width: Qt.application.primaryScreen.width
-    height: Qt.application.primaryScreen.height
+    width: Screen.width
+    height: Screen.height
     color: "#0a0a0a"
 
     // SDDM Context Properties
