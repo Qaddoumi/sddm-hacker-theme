@@ -22,7 +22,7 @@ var matrix = {
 
         // Green text for matrix effect
         ctx.fillStyle = "#00ff00";
-        ctx.font = this.fontSize + "px JetBrainsMono Nerd Font Propo";
+        ctx.font = this.fontSize + "px 'JetBrainsMono Nerd Font Propo'";
 
         for (var i = 0; i < this.drops.length; i++) {
             var text = this.chars.charAt(Math.floor(Math.random() * this.chars.length));
