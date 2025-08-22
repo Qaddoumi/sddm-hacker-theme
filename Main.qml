@@ -283,9 +283,11 @@ Rectangle {
     Component.onCompleted: {
         // Check for non-root users
         var nonRootUsers = []
-        for (var i = 0; i < userModel.rowCount(); i++) {
-            var userName = userModel.data(userModel.index(i, 0), 0x100) // 0x100 is UserModel.NameRole
-            if (userName !== "root") {
+        for (var i = 0; i < userModel.count; i++) {
+            var user = userModel.get(i)
+            // Try different property names that SDDM might use
+            var userName = user.name || user.userName || user.login || ""
+            if (userName !== "root" && userName !== "") {
                 nonRootUsers.push(userName)
             }
         }
