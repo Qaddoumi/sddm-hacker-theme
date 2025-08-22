@@ -280,23 +280,34 @@ Rectangle {
         }
     }
 
-    Component.onCompleted: {
-        console.log("User model count:", userModel.count)
-        for (var i = 0; i < userModel.count; i++) {
-            var user = userModel.get(i)
-            console.log("User", i, ":", JSON.stringify(user))
-        }
+    Text {
+        id: debugInfo
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.margins: 10
+        color: "#00ff00"
+        font.family: "JetBrainsMono Nerd Font Propo"
+        font.pixelSize: 12
+        visible: true // Set to false when done debugging
+    }
 
-        // Check for non-root users
+    Component.onCompleted: {
+        var debugText = "User model count: " + userModel.count + "\n"
         var nonRootUsers = []
+
         for (var i = 0; i < userModel.count; i++) {
             var user = userModel.get(i)
-            // Try different property names that SDDM might use
-            var userName = user.name || user.userName || user.login || ""
-            if (userName !== "root" && userName !== "") {
+            debugText += "User " + i + ": " + JSON.stringify(user) + "\n"
+
+            // Try different possible property names
+            var userName = user.name || user.userName || user.login || user.displayName || ""
+            if (userName && userName !== "root") {
                 nonRootUsers.push(userName)
             }
         }
+
+        debugText += "Non-root users: " + nonRootUsers.join(", ") + "\n"
+        debugInfo.text = debugText
 
         // If there's only one non-root user, pre-fill and focus password
         if (nonRootUsers.length === 1) {
