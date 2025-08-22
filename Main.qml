@@ -289,6 +289,7 @@ Rectangle {
         font.family: "JetBrainsMono Nerd Font Propo"
         font.pixelSize: 12
         visible: true // Set to false when done debugging
+        z: 9999
     }
 
     Component.onCompleted: {
