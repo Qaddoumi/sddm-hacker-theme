@@ -56,7 +56,6 @@ Current=hacker-theme
 [General]
 DisplayServer=wayland
 Greeter=qt6
-GreeterEnvironment=QT_LOGGING_RULES="qt5ct.debug=false"
 EOF
 
 echo -e "${green}Installation complete!${no_color}"
