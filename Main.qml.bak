@@ -4,11 +4,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import "matrix.js" as Matrix
 
-property int sessionIndex: sessionSelector.currentIndex
-property alias userName: usernameField.text
-property alias password: passwordField.text
-property bool singleUser: userModel.count === 1
-
 Rectangle {
     id: root
     width: Screen.width
@@ -76,10 +71,10 @@ Rectangle {
             Layout.preferredWidth: 300
             KeyNavigation.tab: passwordField
             Keys.onPressed: (event) => {
-                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                    passwordField.forceActiveFocus()
-                }
-            }
+                                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                                    passwordField.forceActiveFocus()
+                                }
+                            }
         }
 
         TextField {
@@ -99,10 +94,10 @@ Rectangle {
             Layout.preferredWidth: 300
             KeyNavigation.tab: loginButton
             Keys.onPressed: (event) => {
-                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                    loginButton.clicked()
-                }
-            }
+                                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                                    loginButton.clicked()
+                                }
+                            }
         }
 
         Button {
@@ -285,11 +280,7 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        // If there's only one user, pre-fill the username and focus password field
-        if (singleUser && userModel.count === 1) {
-            usernameField.text = userModel.get(0).name
-            passwordField.forceActiveFocus()
-        } else if (userName.length === 0) {
+        if (userName.length === 0) {
             usernameField.forceActiveFocus()
         } else {
             passwordField.forceActiveFocus()
