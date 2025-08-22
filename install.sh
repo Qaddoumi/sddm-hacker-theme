@@ -38,7 +38,7 @@ fi
 
 echo -e "${green}Cleaning up${no_color}"
 cd ..
-#sudo rm -rf sddm-hacker-theme || true
+sudo rm -rf sddm-hacker-theme || true
 
 echo -e "${green}Configuring SDDM...${no_color}"
 
