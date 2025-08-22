@@ -280,41 +280,21 @@ Rectangle {
         }
     }
 
-    Text {
-        id: debugInfo
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.margins: 10
-        color: "#00ff00"
-        font.family: "JetBrainsMono Nerd Font Propo"
-        font.pixelSize: 12
-        visible: true // Set to false when done debugging
-        z: 9999
-    }
-
     Component.onCompleted: {
-        var debugText = "User model count: " + userModel.count + "\n"
+        // Check for non-root users
         var nonRootUsers = []
-
         for (var i = 0; i < userModel.count; i++) {
             var user = userModel.get(i)
-            debugText += "User " + i + ": " + JSON.stringify(user) + "\n"
-
-            // Try different possible property names
-            var userName = user.name || user.userName || user.login || user.displayName || ""
-            if (userName && userName !== "root") {
-                nonRootUsers.push(userName)
+            if (user.name !== "root") {
+                nonRootUsers.push(user)
             }
         }
 
-        debugText += "Non-root users: " + nonRootUsers.join(", ") + "\n"
-        debugInfo.text = debugText
-
         // If there's only one non-root user, pre-fill and focus password
         if (nonRootUsers.length === 1) {
-            usernameField.text = nonRootUsers[0]
+            usernameField.text = nonRootUsers[0].name
             passwordField.forceActiveFocus()
-        } else if (usernameField.text.length === 0) {
+        } else if (userName.length === 0) {
             usernameField.forceActiveFocus()
         } else {
             passwordField.forceActiveFocus()
