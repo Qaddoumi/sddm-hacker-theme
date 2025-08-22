@@ -283,18 +283,18 @@ Rectangle {
     Component.onCompleted: {
         // Check for non-root users
         var nonRootUsers = []
-        for (var i = 0; i < userModel.count; i++) {
-            var user = userModel.get(i)
-            if (user.name !== "root") {
-                nonRootUsers.push(user)
+        for (var i = 0; i < userModel.rowCount(); i++) {
+            var userName = userModel.data(userModel.index(i, 0), 0x100) // 0x100 is UserModel.NameRole
+            if (userName !== "root") {
+                nonRootUsers.push(userName)
             }
         }
 
         // If there's only one non-root user, pre-fill and focus password
         if (nonRootUsers.length === 1) {
-            usernameField.text = nonRootUsers[0].name
+            usernameField.text = nonRootUsers[0]
             passwordField.forceActiveFocus()
-        } else if (userName.length === 0) {
+        } else if (usernameField.text.length === 0) {
             usernameField.forceActiveFocus()
         } else {
             passwordField.forceActiveFocus()
