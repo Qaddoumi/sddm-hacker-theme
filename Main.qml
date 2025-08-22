@@ -1,7 +1,7 @@
-import QtQuick
-import QtQuick.Layouts
-import QtQuick.Controls
-import QtQuick.Window
+import QtQuick 6.0
+import QtQuick.Layouts 6.0
+import QtQuick.Controls 6.0
+import QtQuick.Window 6.0
 import "matrix.js" as Matrix
 
 Rectangle {
