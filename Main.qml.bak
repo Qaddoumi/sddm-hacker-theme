@@ -1,14 +1,13 @@
-import QtQuick
-import QtQuick.Layouts
-import QtQuick.Controls
-import QtQuick.Window
+import QtQuick 2.15
+import QtQuick.Layouts 1.15
+import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
 import "matrix.js" as Matrix
 
-ApplicationWindow {
+Rectangle {
     id: root
     width: Screen.width
     height: Screen.height
-    visible: true
     color: "#0a0a0a"
 
     // SDDM Context Properties
@@ -71,7 +70,7 @@ ApplicationWindow {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: 300
             KeyNavigation.tab: passwordField
-            Keys.onPressed: function(event) {
+            Keys.onPressed: (event) => {
                 if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                     passwordField.forceActiveFocus()
                 }
@@ -94,7 +93,7 @@ ApplicationWindow {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: 300
             KeyNavigation.tab: loginButton
-            Keys.onPressed: function(event) {
+            Keys.onPressed: (event) => {
                 if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                     loginButton.clicked()
                 }
@@ -124,9 +123,7 @@ ApplicationWindow {
             Layout.preferredWidth: 150
             KeyNavigation.tab: usernameField
             onClicked: {
-                if (typeof sddm !== 'undefined') {
-                    sddm.login(usernameField.text, passwordField.text, sessionIndex)
-                }
+                sddm.login(usernameField.text, passwordField.text, sessionIndex)
             }
         }
     }
@@ -144,7 +141,7 @@ ApplicationWindow {
     // Session selection
     ComboBox {
         id: sessionSelector
-        model: typeof sessionModel !== 'undefined' ? sessionModel : []
+        model: sessionModel
         textRole: "name"
         font.family: "JetBrainsMono Nerd Font Propo"
         font.pixelSize: 14
@@ -159,7 +156,7 @@ ApplicationWindow {
             border.width: 1
             radius: 5
         }
-
+        
         contentItem: Text {
             text: sessionSelector.displayText
             color: "#00ff00"
@@ -168,26 +165,26 @@ ApplicationWindow {
             verticalAlignment: Text.AlignVCenter
             leftPadding: 10
         }
-
+        
         popup: Popup {
             y: sessionSelector.height
             width: sessionSelector.width
             implicitHeight: contentItem.implicitHeight
             padding: 1
-
+            
             background: Rectangle {
                 color: "#1a1a1a"
                 border.color: "#00ff00"
                 border.width: 1
                 radius: 5
             }
-
+            
             contentItem: ListView {
                 clip: true
                 implicitHeight: contentHeight
                 model: sessionSelector.popup.visible ? sessionSelector.delegateModel : null
                 currentIndex: sessionSelector.highlightedIndex
-
+                
                 delegate: ItemDelegate {
                     width: sessionSelector.width
                     contentItem: Text {
@@ -231,11 +228,7 @@ ApplicationWindow {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }
-            onClicked: {
-                if (typeof sddm !== 'undefined') {
-                    sddm.powerOff()
-                }
-            }
+            onClicked: sddm.powerOff()
         }
 
         Button {
@@ -256,11 +249,7 @@ ApplicationWindow {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }
-            onClicked: {
-                if (typeof sddm !== 'undefined') {
-                    sddm.reboot()
-                }
-            }
+            onClicked: sddm.reboot()
         }
     }
 
@@ -279,7 +268,7 @@ ApplicationWindow {
 
     // Connect to SDDM signals
     Connections {
-        target: typeof sddm !== 'undefined' ? sddm : null
+        target: sddm
         function onLoginSucceeded() {
             errorMessage.text = ""
         }
