@@ -280,24 +280,35 @@ Rectangle {
         }
     }
 
-    Component.onCompleted: {
-        // Check for non-root users
-        var nonRootUsers = []
-        for (var i = 0; i < userModel.count; i++) {
-            var user = userModel.get(i)
-            if (user.name !== "root") {
-                nonRootUsers.push(user)
-            }
+    // Helper to find non-root users
+    Instantiator {
+        id: userChecker
+        model: userModel
+        delegate: QtObject {
+            property string userName: model.name
+            property bool isRoot: model.name === "root"
         }
 
-        // If there's only one non-root user, pre-fill and focus password
-        if (nonRootUsers.length === 1) {
-            usernameField.text = nonRootUsers[0].name
-            passwordField.forceActiveFocus()
-        } else if (userName.length === 0) {
-            usernameField.forceActiveFocus()
-        } else {
-            passwordField.forceActiveFocus()
+        property var nonRootUsers: []
+
+        onObjectAdded: function(index, object) {
+            if (!object.isRoot) {
+                nonRootUsers.push(object.userName)
+            }
         }
+    }
+
+    Component.onCompleted: {
+        // Small delay to ensure userChecker has processed all users
+        Qt.callLater(function() {
+            if (userChecker.nonRootUsers.length === 1) {
+                usernameField.text = userChecker.nonRootUsers[0]
+                passwordField.forceActiveFocus()
+            } else if (userName.length === 0) {
+                usernameField.forceActiveFocus()
+            } else {
+                passwordField.forceActiveFocus()
+            }
+        })
     }
 }
