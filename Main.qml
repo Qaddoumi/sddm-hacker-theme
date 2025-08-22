@@ -281,9 +281,18 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        // If there's only one user, pre-fill the username and focus password field
-        if (singleUser && userModel.count === 1) {
-            usernameField.text = userModel.get(0).name
+        // Check for non-root users
+        var nonRootUsers = []
+        for (var i = 0; i < userModel.count; i++) {
+            var user = userModel.get(i)
+            if (user.name !== "root") {
+                nonRootUsers.push(user)
+            }
+        }
+
+        // If there's only one non-root user, pre-fill and focus password
+        if (nonRootUsers.length === 1) {
+            usernameField.text = nonRootUsers[0].name
             passwordField.forceActiveFocus()
         } else if (userName.length === 0) {
             usernameField.forceActiveFocus()
