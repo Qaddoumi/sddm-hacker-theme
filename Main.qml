@@ -281,6 +281,12 @@ Rectangle {
     }
 
     Component.onCompleted: {
+        console.log("User model count:", userModel.count)
+        for (var i = 0; i < userModel.count; i++) {
+            var user = userModel.get(i)
+            console.log("User", i, ":", JSON.stringify(user))
+        }
+
         // Check for non-root users
         var nonRootUsers = []
         for (var i = 0; i < userModel.count; i++) {
