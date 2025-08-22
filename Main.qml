@@ -4,11 +4,10 @@ import QtQuick.Controls
 import QtQuick.Window
 import "matrix.js" as Matrix
 
-ApplicationWindow {
+Rectangle {
     id: root
     width: Screen.width
     height: Screen.height
-    visible: true
     color: "#0a0a0a"
 
     // SDDM Context Properties
