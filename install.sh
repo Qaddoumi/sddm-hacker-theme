@@ -55,8 +55,7 @@ sudo tee /etc/sddm.conf > /dev/null << 'EOF'
 Current=hacker-theme
 [General]
 Greeter=qt6
-[Wayland]
-CompositorCommand=sway
+
 EOF
 
 echo -e "${green}Installation complete!${no_color}"
