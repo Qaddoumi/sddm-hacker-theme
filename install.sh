@@ -53,8 +53,6 @@ echo -e "${green}creating a new config file ${no_color}"
 sudo tee /etc/sddm.conf > /dev/null << 'EOF'
 [Theme]
 Current=hacker-theme
-[General]
-Greeter=qt6
 
 EOF
 
