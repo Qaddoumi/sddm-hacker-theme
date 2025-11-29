@@ -2,6 +2,9 @@
 # SDDM Hacker Theme
 This is a hacker-style SDDM theme with a dark background, neon green text, and a matrix digital rain effect.
 
+## 
+![Preview](screenshot.png)
+
 
 ## Installation Instructions :
 
