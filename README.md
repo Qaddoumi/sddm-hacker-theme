@@ -6,7 +6,7 @@ This is a hacker-style SDDM theme with a dark background, neon green text, and a
 ![Preview](screenshot.png)
 
 
-## Installation Instructions :
+## Installation :
 
 ```bash
 bash <(curl -sL https://raw.githubusercontent.com/Qaddoumi/sddm-hacker-theme/main/install.sh)

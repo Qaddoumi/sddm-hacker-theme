@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Colors for output
 red='\033[0;31m'
@@ -11,7 +11,7 @@ cd ~ || echo -e "${red}Failed to change directory to home${no_color}"
 echo -e "${green}Installing SDDM Hacker Theme...${no_color}"
 
 echo -e "${green}Installing dependencies...${no_color}"
-sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd qt6-declarative qt6-multimedia qt6-wayland qt5-quickcontrols2
+sudo pacman -S --needed --noconfirm git ttf-jetbrains-mono-nerd qt6-declarative qt6-multimedia qt6-wayland qt5-quickcontrols2
 
 echo -e "${green}Cloning repository...${no_color}"
 if [ -d "sddm-hacker-theme" ]; then
