@@ -53,6 +53,9 @@ fi
 
 echo -e "${green}creating a new config file ${no_color}"
 sudo tee /etc/sddm.conf > /dev/null << 'EOF'
+[General]
+GreeterCommand=/usr/bin/sddm-greeter-qt6
+
 [Theme]
 Current=hacker-theme
 
