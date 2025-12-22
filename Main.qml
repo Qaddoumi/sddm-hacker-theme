@@ -21,7 +21,7 @@ Rectangle {
     // Background video
     Video {
         id: backgroundVideo
-        source: "assets/video.mp4"
+        source: "/usr/share/sddm/themes/hacker-theme/assets/video.mp4"
         anchors.fill: parent
         opacity: 0.3
         fillMode: Video.PreserveAspectCrop
