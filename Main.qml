@@ -19,15 +19,21 @@ Rectangle {
     property bool singleUser: userModel.count === 1
 
     // Background video
-    Video {
-        id: backgroundVideo
+    MediaPlayer {
+        id: player
         source: Qt.resolvedUrl("assets/video.mp4")
-        anchors.fill: parent
-        opacity: 0.3
-        fillMode: Video.PreserveAspectCrop // Reverting to Video. as it should work if Video is imported
+        videoOutput: videoOutput
         loops: MediaPlayer.Infinite
         autoPlay: true
-        muted: true
+        audioOutput: AudioOutput { muted: true }
+        Component.onCompleted: play()
+    }
+
+    VideoOutput {
+        id: videoOutput
+        anchors.fill: parent
+        opacity: 0.3
+        fillMode: VideoOutput.PreserveAspectCrop
     }
 
     // Matrix digital rain effect
