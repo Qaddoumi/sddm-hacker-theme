@@ -57,7 +57,7 @@ sudo tee /etc/sddm.conf > /dev/null << 'EOF'
 Current=hacker-theme
 EOF
 
-# Making sure sddm starts with qt6 and not qt5
+### Making sure sddm starts with qt6 and not qt5
 # Count how many sddm-greeter files exist
 # sddm-greeter-qt6 is the qt6 version
 # sddm-greeter is the qt5 version
