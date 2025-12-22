@@ -21,10 +21,10 @@ Rectangle {
     // Background video
     Video {
         id: backgroundVideo
-        source: "/usr/share/sddm/themes/hacker-theme/assets/video.mp4"
+        source: Qt.resolvedUrl("assets/video.mp4")
         anchors.fill: parent
         opacity: 0.3
-        fillMode: VideoOutput.PreserveAspectCrop
+        fillMode: Video.PreserveAspectCrop // Reverting to Video. as it should work if Video is imported
         loops: MediaPlayer.Infinite
         autoPlay: true
         muted: true

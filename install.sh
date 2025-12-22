@@ -36,6 +36,8 @@ else
     sudo mkdir -p /usr/share/sddm/themes/hacker-theme/assets
 fi
 
+sudo chmod -R 755 /usr/share/sddm/themes/hacker-theme/assets
+
 echo -e "${green}Cleaning up${no_color}"
 cd ..
 sudo rm -rf sddm-hacker-theme || true
