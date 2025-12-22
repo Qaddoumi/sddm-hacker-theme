@@ -204,7 +204,7 @@ Rectangle {
         }
     }
 
-    // Power options (optional)
+    // Power options
     Row {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
