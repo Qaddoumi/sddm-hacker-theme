@@ -57,6 +57,16 @@ sudo tee /etc/sddm.conf > /dev/null << 'EOF'
 Current=hacker-theme
 EOF
 
+# Making sure sddm starts with qt6 and not qt5
+# Count how many sddm-greeter files exist
+# sddm-greeter-qt6 is the qt6 version
+# sddm-greeter is the qt5 version
+greeter_count=$(ls -1 /usr/bin/sddm-greeter* 2>/dev/null | wc -l)
+if [ "$greeter_count" -eq 2 ]; then
+    sudo mv /usr/bin/sddm-greeter /usr/bin/sddm-greeter.qt5.backup
+    sudo ln -s /usr/bin/sddm-greeter-qt6 /usr/bin/sddm-greeter
+fi
+
 echo -e "${green}Installation complete!${no_color}"
 echo -e "${green}Next steps:${no_color}"
 echo ". Restart SDDM: sudo systemctl restart sddm (or reboot)"
