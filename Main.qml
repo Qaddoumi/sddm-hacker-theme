@@ -24,7 +24,7 @@ Rectangle {
         source: "/usr/share/sddm/themes/hacker-theme/assets/video.mp4"
         anchors.fill: parent
         opacity: 0.3
-        fillMode: Video.PreserveAspectCrop
+        fillMode: VideoOutput.PreserveAspectCrop
         loops: MediaPlayer.Infinite
         autoPlay: true
         muted: true
