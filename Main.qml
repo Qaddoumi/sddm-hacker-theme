@@ -2,8 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Window
-import QtMultimedia
-
 import "matrix.js" as Matrix
 
 Rectangle {
@@ -18,22 +16,13 @@ Rectangle {
     property alias password: passwordField.text
     property bool singleUser: userModel.count === 1
 
-    // Background video
-    MediaPlayer {
-        id: player
-        source: Qt.resolvedUrl("assets/video.mp4")
-        videoOutput: videoOutput
-        loops: MediaPlayer.Infinite
-        autoPlay: true
-        audioOutput: AudioOutput { muted: true }
-        Component.onCompleted: play()
-    }
-
-    VideoOutput {
-        id: videoOutput
+    // Background image
+    Image {
+        id: background
+        source: "assets/background.jpg"
         anchors.fill: parent
         opacity: 0.3
-        fillMode: VideoOutput.PreserveAspectCrop
+        fillMode: Image.PreserveAspectCrop
     }
 
     // Matrix digital rain effect
