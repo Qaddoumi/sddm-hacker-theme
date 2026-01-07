@@ -149,7 +149,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.margins: 20
-        width: 200
+        width: 225
 
         background: Rectangle {
             color: "#1a1a1a"
