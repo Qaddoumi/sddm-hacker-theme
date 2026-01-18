@@ -19,7 +19,7 @@ Rectangle {
 	// Background image
 	Image {
 		id: background
-		source: "assets/background.jpg"
+		source: "assets/background.png"
 		anchors.fill: parent
 		opacity: 0.3
 		fillMode: Image.PreserveAspectCrop
