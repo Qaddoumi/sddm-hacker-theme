@@ -25,7 +25,7 @@ echo -e "${green}Installing SDDM Hacker Theme...${no_color}"
 
 echo -e "${green}Installing dependencies...${no_color}"
 "$ESCALATION_TOOL" pacman -S --needed --noconfirm git ttf-jetbrains-mono-nerd ffmpeg qt6-declarative qt6-multimedia qt6-wayland || \
-"$ESCALATION_TOOL" xbps-install -Sy git ffmpeg qt6-declarative qt6-multimedia qt6-wayland
+"$ESCALATION_TOOL" xbps-install -y git ffmpeg qt6-declarative qt6-multimedia qt6-wayland
 
 echo -e "${green}Cloning repository...${no_color}"
 if [ -d "sddm-hacker-theme" ]; then
