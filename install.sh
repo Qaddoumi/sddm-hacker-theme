@@ -24,7 +24,8 @@ cd ~ || echo -e "${red}Failed to change directory to home${no_color}"
 echo -e "${green}Installing SDDM Hacker Theme...${no_color}"
 
 echo -e "${green}Installing dependencies...${no_color}"
-"$ESCALATION_TOOL" pacman -S --needed --noconfirm git ttf-jetbrains-mono-nerd ffmpeg qt6-declarative qt6-multimedia qt6-wayland
+"$ESCALATION_TOOL" pacman -S --needed --noconfirm git ttf-jetbrains-mono-nerd ffmpeg qt6-declarative qt6-multimedia qt6-wayland || \
+"$ESCALATION_TOOL" xbps-install -Sy git ffmpeg qt6-declarative qt6-multimedia qt6-wayland
 
 echo -e "${green}Cloning repository...${no_color}"
 if [ -d "sddm-hacker-theme" ]; then
@@ -82,7 +83,7 @@ fi
 
 echo -e "${green}Installation complete!${no_color}"
 echo -e "${green}Next steps:${no_color}"
-echo ". Restart SDDM: ${ESCALATION_TOOL} systemctl restart sddm (or reboot) if using systemd"
+echo ". Restart SDDM to see the changes (or reboot)"
 echo ". Check logs if there are issues: journalctl -u sddm -f"
 echo ". Run the following command to test the theme without logging out:"
 echo ". sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/hacker-theme"
